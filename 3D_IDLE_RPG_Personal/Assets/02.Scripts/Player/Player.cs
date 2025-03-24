@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         stateMachine = new PlayerStateMachine(this);
-       
 
         AnimationData.Initialize();
 

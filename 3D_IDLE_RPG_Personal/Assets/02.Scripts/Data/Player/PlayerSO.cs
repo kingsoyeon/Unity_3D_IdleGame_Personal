@@ -27,6 +27,29 @@ public class PlayerAirData
 [Serializable]
 public class PlayerAttackData 
 {
+    [field: Header("AttackData")]
+    [field: SerializeField] public List<PlayerAttackInfoData> AttackInfoDatas { get; private set; }
+    public int GetAttackInfoCount() { return AttackInfoDatas.Count; } // 공격에 대한 정보 개수만큼 카운트로 반환
+    public PlayerAttackInfoData GetAttackInfoData(int index) {return AttackInfoDatas[index];}
+}
+
+[Serializable]
+public class PlayerAttackInfoData 
+{
+    [field: Header("AttackData")]
+    [field: SerializeField]public string AttackName { get; private set; }
+    [field: SerializeField]public int ComboStateIndex { get; private set; }
+    [field: SerializeField][field: Range(0f, 1f)] public float ComboTransitionTime { get; private set; } // 콤보 가능한 시간 범위
+    [field: SerializeField][field: Range(0f, 3f)] public float ForceTransitionTime { get; private set; } // 댐핑 가능한 시간 범위
+
+    [field: SerializeField][field: Range(-10f, 10f)] public float Force{ get; private set; } // 힘을 얼마만큼 줄 건지
+
+    [field: SerializeField][field: Range(0f, 10f)] public float Damage { get; private set; } // 데미지
+    [field: SerializeField][field: Range(0, 1f)] public float Dealing_Start_TransitionTime { get; private set; }
+    [field: SerializeField][field: Range(0, 1f)] public float Dealing_End_TransitionTime { get; private set; }
+
+
+
 
 }
 

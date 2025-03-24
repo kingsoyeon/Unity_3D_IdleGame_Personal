@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,11 +50,14 @@ public class PlayerBaseState : IState
 
     private void Move()
     {
-
+        float movementSpeed = GetMovementSpeed();
+        stateMachine.Player.CharacterController.Move((movementSpeed * stateMachine.Player.transform.forward) * Time.deltaTime);
     }
 
-    private void Rotate()
+    private float GetMovementSpeed()
     {
-
+        float moveSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
+        return moveSpeed;
     }
+
 }
