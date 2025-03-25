@@ -5560,6 +5560,7 @@ GameObject:
   - component: {fileID: 1295484743}
   - component: {fileID: 1295484742}
   - component: {fileID: 1295484745}
+  - component: {fileID: 1295484746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5603,6 +5604,7 @@ MonoBehaviour:
     comboAttackParameterName: ComboAttack
     baseAttackParameterName: BaseAttack
   <Data>k__BackingField: {fileID: 11400000, guid: 650c4dc63a9ee604eb0256f7203842c0, type: 2}
+  health: {fileID: 0}
   input: {fileID: 0}
   animator: {fileID: 0}
 --- !u!4 &1295484744
@@ -5648,6 +5650,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1295484746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295484740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b5904cdaa919c41ad8f520f1538d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1304013932
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,6 +6242,7 @@ GameObject:
   - component: {fileID: 1368394078}
   - component: {fileID: 1368394080}
   - component: {fileID: 1368394079}
+  - component: {fileID: 1368394081}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -6299,6 +6315,19 @@ CapsuleCollider:
   m_Height: 0.6
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1368394081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368394077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a93e8ae28cc7854bbfb797bbe29e65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 1850601406}
 --- !u!1 &1378226503
 GameObject:
   m_ObjectHideFlags: 0
@@ -8542,6 +8571,7 @@ MonoBehaviour:
     comboAttackParameterName: ComboAttack
     baseAttackParameterName: BaseAttack
   <Data>k__BackingField: {fileID: 11400000, guid: 7706de4c3ad1185409a321e22788601b, type: 2}
+  <Weapon>k__BackingField: {fileID: 1368394081}
   animator: {fileID: 0}
 --- !u!1 &1855485364
 GameObject:
