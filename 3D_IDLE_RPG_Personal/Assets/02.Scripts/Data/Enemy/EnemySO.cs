@@ -9,7 +9,7 @@ public class EnemySO : ScriptableObject
 
     // 딜 관련 데이터
     [field: SerializeField][field: Range(0f, 3f)] public float ForceTransitionTime { get; private set; }
-    [field: SerializeField][field: Range(0f, 10f)] public float Damage { get; private set; }
+    [field: SerializeField][field: Range(0f, 10f)] public int Damage { get; private set; }
     [field: SerializeField][field: Range(-10f, 10f)] public float Force { get; private set; }
 
     // 추적 데이터

@@ -38,6 +38,7 @@ public class PlayerComboAttackState : PlayerAttackState
     public override void Update()
     {
         base.Update();
+        
 
         float normalizedTime = GetNormalizedTime(stateMachine.Player.animator, "Attack");
         if (normalizedTime < 1f) // 애니메이션이 다 끝나면 1f, 즉 애니메이션이 끝나지 않았다면
@@ -48,10 +49,6 @@ public class PlayerComboAttackState : PlayerAttackState
                 TryComboAttack();
             }
 
-            if (normalizedTime >= attackInfoData.ForceTransitionTime)
-            {
-                // 댐핑 시도한다
-            }
         }
         else // 애니메이션이 끝났다면
         {

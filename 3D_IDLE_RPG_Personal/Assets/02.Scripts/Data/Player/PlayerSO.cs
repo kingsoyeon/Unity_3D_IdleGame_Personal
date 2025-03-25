@@ -47,12 +47,9 @@ public class PlayerAttackInfoData
 
     [field: SerializeField][field: Range(-10f, 10f)] public float Force{ get; private set; } // 힘을 얼마만큼 줄 건지
 
-    [field: SerializeField][field: Range(0f, 10f)] public float Damage { get; private set; } // 데미지
+    [field: SerializeField][field: Range(0f, 10f)] public int Damage { get; private set; } // 데미지
     [field: SerializeField][field: Range(0, 1f)] public float Dealing_Start_TransitionTime { get; private set; }
     [field: SerializeField][field: Range(0, 1f)] public float Dealing_End_TransitionTime { get; private set; }
-
-
-
 
 }
 
@@ -63,6 +60,8 @@ public class PlayerSO : ScriptableObject
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttackData { get; private set; }
+
+    [field: SerializeField] public PlayerAttackInfoData AttackInfoData { get; private set; }
 }
     
 

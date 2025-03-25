@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [field:SerializeField] public PlayerAnimationData AnimationData { get; private set; }
     [field:SerializeField] public PlayerSO Data { get; private set; }
 
+    [field: SerializeField] public Weapon Weapon { get; private set; }
     public CharacterController CharacterController { get; private set; }
 
     private PlayerStateMachine stateMachine;

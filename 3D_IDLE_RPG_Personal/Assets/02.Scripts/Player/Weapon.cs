@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Collider myCollider;
 
     private int damage;
+
     //private float Knockback; 넉백 구현 시
 
     private List<Collider> alreadyCollider = new List<Collider>(); // 이 콜라이더와 충돌된 다른 콜라이더 리스트 
@@ -20,7 +21,7 @@ public class Weapon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other == myCollider) return; // 내콜라이더랑 부딪히면 리턴
-        if (alreadyCollider.Contains(other)) return; // 이미 부딪혔던 콜라이더랑 부딪히면 리턴
+        //if (alreadyCollider.Contains(other)) return; // 이미 부딪혔던 콜라이더랑 부딪히면 리턴
 
         // 둘다 아니라면 리스트에 넣어준다
         alreadyCollider.Add(other);
