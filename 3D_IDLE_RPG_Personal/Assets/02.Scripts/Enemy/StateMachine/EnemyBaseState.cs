@@ -33,7 +33,7 @@ public class EnemyBaseState : IState
 
     public virtual void Update()
     {
-        // Move();
+        Move();
     }
 
     protected void StartAnimation(int hash)
@@ -47,7 +47,42 @@ public class EnemyBaseState : IState
         // hash에 해당하는 애니메이션 끝
         stateMachine.Enemy.animator.SetBool(hash, false);
     }
-    
+
+    private void Move()
+    {
+        Vector3 movementDirection = GetMovementDirection();
+
+        Rotate(movementDirection);
+
+        Move(movementDirection);
+    }
+
+    private Vector3 GetMovementDirection()
+    {
+        Vector3 dir = (stateMachine.target.transform.position - stateMachine.Enemy.transform.position).normalized;
+        return dir;
+    }
+
+    void Move(Vector3 movementDirection)
+    {
+        float movementSpeed = GetMovementSpeed();
+        stateMachine.Enemy.CharacterController.Move(((movementDirection * movementSpeed) * Time.deltaTime));
+    }
+
+    private float GetMovementSpeed()
+    {
+        float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
+        return movementSpeed;
+    }
+
+    void Rotate(Vector3 movementDirection)
+    {
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            stateMachine.Enemy.transform.rotation = Quaternion.Lerp(stateMachine.Enemy.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+        }
+    }
 
     protected bool isInChasingRange() // 플레이어가 추적 범위 안에 있는지
     {

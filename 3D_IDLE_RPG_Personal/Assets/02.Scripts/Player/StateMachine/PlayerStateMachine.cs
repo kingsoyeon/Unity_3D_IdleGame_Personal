@@ -8,7 +8,7 @@ public class PlayerStateMachine : StateMachine
     // 데이터를 이용해 상태별로 조작하고 저장하는 역할
 
     public Player Player { get; }
-
+    public Health Target { get; private set; }
     public float MovementSpeed { get; set; }
 
     public float RotationDamping { get; private set; }
@@ -31,6 +31,7 @@ public class PlayerStateMachine : StateMachine
     public PlayerStateMachine(Player player)
     {
         this.Player = player;
+        Target = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;

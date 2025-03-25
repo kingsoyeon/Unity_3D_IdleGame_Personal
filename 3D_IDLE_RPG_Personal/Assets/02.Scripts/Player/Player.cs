@@ -20,10 +20,20 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        stateMachine.ChangeState(stateMachine.IdleState);
-    }
+        stateMachine.ChangeState(stateMachine.RunState);
 
-    
+        health.OnDie += OnDie; // health의 OnDie 액션에 메서드 추가
+    }
+    ////public IEnumerator ChangeToWalk()
+    //{
+    //    if(ChangeToWalk() != null)
+    //    stateMachine.ChangeState(stateMachine.IdleState);
+    //    yield return new WaitForSeconds(3);
+    //    stateMachine.ChangeState(stateMachine.WalkState);
+    //    yield return new WaitForSeconds(3);
+    //    stateMachine.ChangeState(stateMachine.RunState);
+    //}
+
     private void Awake()
     {
        
@@ -35,7 +45,7 @@ public class Player : MonoBehaviour
 
         AnimationData.Initialize();
         
-        health.OnDie += OnDie; // health의 OnDie 액션에 메서드 추가
+        
 
 
         stateMachine = new PlayerStateMachine(this);
@@ -56,5 +66,6 @@ public class Player : MonoBehaviour
     void OnDie()
     {
         animator.SetTrigger("Die"); // Die 이름을 가진 애니메이션 실행
+        enabled = false;
     }
 }

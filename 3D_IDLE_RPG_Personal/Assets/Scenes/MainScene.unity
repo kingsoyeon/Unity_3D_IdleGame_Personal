@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 604051360}
   - component: {fileID: 604051362}
   - component: {fileID: 604051361}
+  - component: {fileID: 604051363}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -535,9 +536,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604051359}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000005922468, y: 0.00000006258779, z: 3.6199352e-10, w: 1}
-  m_LocalPosition: {x: -2.3970006, y: 0.20000325, z: -0.0005462051}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.313, y: 0.14, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2052152406}
@@ -592,6 +593,19 @@ CapsuleCollider:
   m_Height: 0.6
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &604051363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604051359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a93e8ae28cc7854bbfb797bbe29e65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollider: {fileID: 1295484745}
 --- !u!1 &627251213 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d94b199b04cd4994d891b2d285b62150, type: 3}
@@ -1439,9 +1453,10 @@ GameObject:
   - component: {fileID: 1850601407}
   - component: {fileID: 1850601406}
   - component: {fileID: 1850601408}
+  - component: {fileID: 1850601409}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1481,7 +1496,7 @@ Transform:
   m_GameObject: {fileID: 1850601405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: -0.2, z: 2.615}
+  m_LocalPosition: {x: 1, y: -0.2, z: 12.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1514,7 +1529,22 @@ MonoBehaviour:
     baseAttackParameterName: BaseAttack
   <Data>k__BackingField: {fileID: 11400000, guid: 7706de4c3ad1185409a321e22788601b, type: 2}
   <Weapon>k__BackingField: {fileID: 1368394081}
+  health: {fileID: 0}
   animator: {fileID: 0}
+--- !u!114 &1850601409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850601405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b5904cdaa919c41ad8f520f1538d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  IsDie: 0
 --- !u!1 &1855485364
 GameObject:
   m_ObjectHideFlags: 0

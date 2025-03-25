@@ -8,6 +8,7 @@ public class PlayerGroundData
 {
     [field: SerializeField][field: Range(0f, 25f)] public float BaseSpeed { get; private set; } = 5f;
     [field: SerializeField][field: Range(0f, 25f)] public float BaseRotationDamping { get; private set; } = 1f;
+    [field: SerializeField] public float AttackRange { get; private set; } // 공격 범위
 
     [field: Header("IdleData")]
 
@@ -38,6 +39,8 @@ public class PlayerAttackInfoData
 {
     [field: Header("AttackData")]
     [field: SerializeField]public string AttackName { get; private set; }
+
+    
     [field: SerializeField]public int ComboStateIndex { get; private set; }
     [field: SerializeField][field: Range(0f, 1f)] public float ComboTransitionTime { get; private set; } // 콤보 가능한 시간 범위
     [field: SerializeField][field: Range(0f, 3f)] public float ForceTransitionTime { get; private set; } // 댐핑 가능한 시간 범위

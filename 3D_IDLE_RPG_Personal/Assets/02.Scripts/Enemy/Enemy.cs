@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     [field: SerializeField] public Weapon Weapon { get; private set; }
 
+    public Health health;
     public CharacterController CharacterController { get; private set; }
 
     private EnemyStateMachine stateMachine;
@@ -20,7 +21,8 @@ public class Enemy : MonoBehaviour
     {
         AnimationData.Initialize();
         CharacterController = GetComponent<CharacterController>();
-        animator = GetComponentInChildren<Animator>();    
+        animator = GetComponentInChildren<Animator>();
+        health = GetComponent<Health>();
         stateMachine = new EnemyStateMachine(this);
         stateMachine.ChangeState(stateMachine.IdleState);
     }
@@ -29,6 +31,8 @@ public class Enemy : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
+
+        health.OnDie += OnDie;
     }
 
     private void Update()
@@ -39,5 +43,11 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.PhysicsUpdate();
+    }
+
+    void OnDie()
+    {
+        animator.SetTrigger("Die"); // Die 이름을 가진 애니메이션 실행
+        enabled = false;
     }
 }

@@ -8,6 +8,8 @@ public class PlayerBaseState : IState
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
     protected readonly PlayerAttackData attackData;
+
+    
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
         stateMachine = playerStateMachine; // 현재 플레이어 상태에 대한 정보를 얻고, 상태를 바꾸는 기능을 쉽게 사용하기 위함
@@ -36,7 +38,24 @@ public class PlayerBaseState : IState
     public virtual void Update()
     {
         Move();
+
+        if (isInAttackRange())
+        {
+
+            // attack state로 변경
+            stateMachine.ChangeState(stateMachine.ComboAttackState);
+            return;
+        }
     }
+
+    protected bool isInAttackRange()
+    {
+        if (stateMachine.Target.IsDie) return false; // 죽으면 그만 공격
+
+        float enemyDistanceSqr = (stateMachine.Target.transform.position  - stateMachine.Player.transform.position).sqrMagnitude;
+        return enemyDistanceSqr <= stateMachine.Player.Data.GroundData.AttackRange * stateMachine.Player.Data.GroundData.AttackRange;
+
+}
 
     protected void StartAnimation(int hash)
     {
