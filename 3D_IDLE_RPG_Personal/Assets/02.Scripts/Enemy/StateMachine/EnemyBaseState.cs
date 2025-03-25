@@ -51,6 +51,7 @@ public class EnemyBaseState : IState
 
     protected bool isInChasingRange() // 플레이어가 추적 범위 안에 있는지
     {
+        if (stateMachine.target.IsDie) { return false; }
         float playerDistanceSqr = (stateMachine.target.transform.position - stateMachine.Enemy.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Enemy.Data.PlayerChasingRange * stateMachine.Enemy.Data.PlayerChasingRange;
     }

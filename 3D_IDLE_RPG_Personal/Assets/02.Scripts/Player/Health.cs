@@ -11,6 +11,8 @@ public class Health : MonoBehaviour
 
     public event Action OnDie; // 죽었을 때 호출될 액션
 
+    public bool IsDie = false;
+
     void Start()
     {
         health = maxHealth;
@@ -23,6 +25,10 @@ public class Health : MonoBehaviour
         health = Mathf.Max(health-damage, 0);
 
         // 데미지를 입고 피가 0이 되면 액션 호출
-        if (health == 0) OnDie?.Invoke();
+        if (health == 0)
+        {
+            IsDie = true;
+            OnDie?.Invoke(); 
+        }
     }
 }
