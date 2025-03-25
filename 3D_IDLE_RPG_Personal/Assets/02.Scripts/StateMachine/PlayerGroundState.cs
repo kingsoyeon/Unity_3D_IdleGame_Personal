@@ -34,5 +34,6 @@ public class PlayerGroundState : PlayerBaseState
     public override void Update()
     {
         base.Update();
+        if(stateMachine.isAttacking) { stateMachine.ChangeState(stateMachine.ComboAttackState); }
     }
 }

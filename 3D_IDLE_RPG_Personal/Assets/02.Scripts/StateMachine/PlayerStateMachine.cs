@@ -9,12 +9,25 @@ public class PlayerStateMachine : StateMachine
 
     public Player Player { get; }
 
+    public float MovementSpeed { get; set; }
+
+    public float RotationDamping { get; private set; }
+
+    public float MovementSpeedModifier { get; set; } = 1f;
+
+
+    public float JumpForce { get; set; }
+
+    public bool isAttacking { get; set; }
+    public int ComboIndex { get; set; }
+
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
 
     public PlayerRunState RunState { get; private set; }
 
-    
+    public PlayerComboAttackState ComboAttackState { get; private set; }
+   
     public PlayerStateMachine(Player player)
     {
         this.Player = player;
@@ -26,18 +39,8 @@ public class PlayerStateMachine : StateMachine
         WalkState = new PlayerWalkState(this);
         RunState = new PlayerRunState(this);
 
+        ComboAttackState = new PlayerComboAttackState(this);
     }
-
-    
-
-    public float MovementSpeed { get; set; } 
-
-    public float RotationDamping { get; private set; } 
-
-    public float MovementSpeedModifier { get; set; } = 1f;
-
-    
-    public float JumpForce { get; set; }
 
     protected void StartAnimation(int animationHash)
     {
