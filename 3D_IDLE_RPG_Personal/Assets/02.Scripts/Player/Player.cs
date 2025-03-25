@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 
     private PlayerStateMachine stateMachine;
 
+    public Health health;
+
     public PlayerController input;
     public Animator animator;
 
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
 
         AnimationData.Initialize();
 
+        health.OnDie += OnDie; // health의 OnDie 액션에 메서드 추가
+
 
         stateMachine = new PlayerStateMachine(this);
         stateMachine.ChangeState(stateMachine.IdleState);
@@ -48,5 +52,8 @@ public class Player : MonoBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-
+    void OnDie()
+    {
+        animator.SetTrigger("Die"); // Die 이름을 가진 애니메이션 실행
+    }
 }

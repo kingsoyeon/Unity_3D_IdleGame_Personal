@@ -13,7 +13,7 @@ public class EnemyStateMachine : StateMachine
     public float MovementSpeedModifier { get; set; } = 1f;
 
 
-    public GameObject target { get; private set; } // enemy의 target = 플레이어
+    public Health target { get; private set; } // enemy의 target = 플레이어
     public EnemyIdleState IdleState { get; }
     public EnemyChaseState ChaseState { get;  }
 
@@ -22,7 +22,7 @@ public class EnemyStateMachine : StateMachine
     public EnemyStateMachine(Enemy enemy)
     {
         this.Enemy = enemy;
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 
         ChaseState = new EnemyChaseState(this);
        AttackState = new EnemyAttackState(this);
