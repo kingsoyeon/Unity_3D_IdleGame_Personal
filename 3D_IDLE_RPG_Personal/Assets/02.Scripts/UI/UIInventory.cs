@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class UIInventory : MonoBehaviour
+public class UIInventory : MonoBehaviour, IUI
 {
-    // Start is called before the first frame update
     void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Hide() // ´Ý±â
     {
-        
+
+        gameObject.SetActive(true);
     }
+
+    public void Show() // ¿­±â
+    {
+
+        gameObject.SetActive(false);
+    }
+
+    public void Toggle() // ¿­°í ´Ý±â
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+    
 }

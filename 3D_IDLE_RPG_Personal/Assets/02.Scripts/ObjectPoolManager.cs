@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,6 @@ public class ObjectPoolManager : MonoBehaviour
     {
         if (!pools.ContainsKey(prefabIndex)) { Destroy(gameObj);  return; }
         gameObj.SetActive(false);
-        pools[prefabIndex].Enqueue(gameObject);
+        pools[prefabIndex].Enqueue(gameObj);
     }
 }

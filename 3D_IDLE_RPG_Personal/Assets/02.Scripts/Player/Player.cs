@@ -29,11 +29,12 @@ public class Player : MonoBehaviour
        
         animator = GetComponentInChildren<Animator>();
         CharacterController = GetComponent<CharacterController>();
+        health = GetComponent<Health>();
 
         input = GetComponent<PlayerController>();
 
         AnimationData.Initialize();
-
+        
         health.OnDie += OnDie; // health의 OnDie 액션에 메서드 추가
 
 
