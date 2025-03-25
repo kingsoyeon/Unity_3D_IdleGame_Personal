@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
             GameObject uiPool = GetPool(i);
             UIPrefabsDictionary[i] = uiPool;
         }
+
+        UIPrefabsDictionary[1].SetActive(false);
     }
 
     private GameObject GetPool(int prefabIndex)
