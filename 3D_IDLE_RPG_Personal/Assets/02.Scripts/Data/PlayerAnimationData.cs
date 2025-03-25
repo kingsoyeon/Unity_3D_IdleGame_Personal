@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-public class PlayerAnimationData : MonoBehaviour
+public class PlayerAnimationData 
 {
     [SerializeField] private string groundParameterName = "@Ground";
     [SerializeField] private string idleParameterName = "Idle";

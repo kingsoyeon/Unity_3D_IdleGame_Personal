@@ -14,7 +14,7 @@ public class PlayerStateMachine : StateMachine
 
     public PlayerRunState RunState { get; private set; }
 
-    // public PlayerState GroundState { get; }
+    
     public PlayerStateMachine(Player player)
     {
         this.Player = player;
