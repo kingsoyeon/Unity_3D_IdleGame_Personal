@@ -25,12 +25,15 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         stateMachine = new PlayerStateMachine(this);
+        stateMachine.ChangeState(stateMachine.IdleState);
 
         AnimationData.Initialize();
 
         CharacterController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         input = GetComponent<PlayerController>();
+
+        
     }
 
     private void Update()

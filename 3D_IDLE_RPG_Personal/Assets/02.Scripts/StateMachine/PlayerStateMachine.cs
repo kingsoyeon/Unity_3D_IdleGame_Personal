@@ -9,7 +9,11 @@ public class PlayerStateMachine : StateMachine
 
     public Player Player { get; }
 
-    public PlayerIdleState IdleState { get; }
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerWalkState WalkState { get; private set; }
+
+    public PlayerRunState RunState { get; private set; }
+
     // public PlayerState GroundState { get; }
     public PlayerStateMachine(Player player)
     {
@@ -19,6 +23,9 @@ public class PlayerStateMachine : StateMachine
         RotationDamping = player.Data.GroundData.BaseRotationDamping;
 
         IdleState = new PlayerIdleState(this);
+        WalkState = new PlayerWalkState(this);
+        RunState = new PlayerRunState(this);
+
     }
 
     

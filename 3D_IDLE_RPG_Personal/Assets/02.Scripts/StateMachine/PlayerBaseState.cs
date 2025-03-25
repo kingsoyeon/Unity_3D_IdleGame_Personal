@@ -7,10 +7,12 @@ public class PlayerBaseState : IState
 {
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
+    protected readonly PlayerAttackData attackData;
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
         stateMachine = playerStateMachine; // 현재 플레이어 상태에 대한 정보를 얻고, 상태를 바꾸는 기능을 쉽게 사용하기 위함
         groundData = stateMachine.Player.Data.GroundData;
+        attackData = stateMachine.Player.Data.AttackData;
     }
 
 

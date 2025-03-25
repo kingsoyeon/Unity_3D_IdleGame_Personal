@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWalkState : PlayerBaseState
+public class PlayerRunState : PlayerBaseState
 {
-    public PlayerWalkState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
+    public PlayerRunState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
     }
 
     public override void Enter()
     {
-        stateMachine.MovementSpeedModifier = stateMachine.Player.Data.GroundData.WalkSpeedModifier;
+        stateMachine.MovementSpeedModifier = stateMachine.Player.Data.GroundData.RunSpeedModifier;
         base.Enter();
-        StartAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
-        StopAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        StopAnimation(stateMachine.Player.AnimationData.RunParameterHash);
     }
 
     public override void HandleInput()
@@ -35,4 +35,5 @@ public class PlayerWalkState : PlayerBaseState
     {
         base.Update();
     }
+
 }
