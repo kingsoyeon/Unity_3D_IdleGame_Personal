@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    ObjectPoolManager objectPoolManager;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        objectPoolManager = ObjectPoolManager.Instance;
     }
 }
