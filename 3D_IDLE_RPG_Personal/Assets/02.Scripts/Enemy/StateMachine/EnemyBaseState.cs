@@ -90,4 +90,25 @@ public class EnemyBaseState : IState
         float playerDistanceSqr = (stateMachine.target.transform.position - stateMachine.Enemy.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Enemy.Data.PlayerChasingRange * stateMachine.Enemy.Data.PlayerChasingRange;
     }
+
+    protected float GetNormalizedTime(Animator animator, string tag)
+    {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0); // 현재 진행 중인 애니메이션 상태
+        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0); // 다음에 진행 예정인 애니메이션 상태
+
+        // 애니메이션이 전환 중 && 다음 애니메이션 태그 체크
+        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
+        {
+            return nextInfo.normalizedTime;
+        }
+        // 애니메이션이 전환 중 아님 && 현재 애니메이션 태그 체크
+        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
+        {
+            return currentInfo.normalizedTime;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
 }
