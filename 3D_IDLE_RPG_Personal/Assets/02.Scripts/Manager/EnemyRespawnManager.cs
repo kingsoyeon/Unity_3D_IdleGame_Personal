@@ -33,38 +33,47 @@ public class EnemyRespawnManager : MonoBehaviour
     {
         if(spawnCoroutine != null)
         {
-            StopCoroutine(spawnCoroutine);
+            return;
         }
         spawnCoroutine = StartCoroutine(RandomSpawn());
     }
 
     public IEnumerator RandomSpawn()
     {
-        
-        yield return new WaitForSeconds(10);
 
-        float z =  UnityEngine.Random.Range(40,60);
-        Vector3 spawnPosition = playerTransform.position + Vector3.forward * z;
-        Debug.Log(spawnPosition);
-        GameObject enemy = GetPool(2, spawnPosition);
+        while (true)
+        {
+             
+            float z = UnityEngine.Random.Range(20, 40);
+            Vector3 spawnPosition = playerTransform.position + Vector3.forward * z;
+            Debug.Log(spawnPosition);
+            GameObject enemy = GetPool(2, spawnPosition); 
+            // 맨처음, 이니셜라이즈하고 활성화해준것을 가져옴
 
-        Health target= enemy.GetComponent<Health>();
-        OnEnemySpawn?.Invoke(target);
+            Health target = enemy.GetComponent<Health>();
+            
+            OnEnemySpawn?.Invoke(target);
 
-        target.OnDie += () => ReturnPool(enemy);
+            bool isDie = false;
+
+            target.OnDie += () =>
+            {
+                ReturnPool(enemy);
+                isDie = true;
+            };
+            yield return new WaitUntil(() => isDie);
+        }
     }
-    
     private GameObject GetPool(int prefabIndex, Vector3 spawnPosition )
     {
         GameObject enemyPool = objectPoolManager.GetObject(prefabIndex, spawnPosition, Quaternion.identity);
-
+        
         return enemyPool;
+
     }
 
     public void ReturnPool(GameObject enemy)
     {
-        enemy.transform.position = Vector3.zero;
-        enemy.transform.rotation = Quaternion.identity;
         objectPoolManager.ReturnObject(2, enemy);
     }
 }

@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPoolable
 {
 
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
     private EnemyStateMachine stateMachine;
 
     public Animator animator;
+
+    private Action<GameObject> returnToPool;
 
     private void Awake()
     {
@@ -48,6 +51,26 @@ public class Enemy : MonoBehaviour
     void OnDie()
     {
         animator.SetTrigger("Die"); // Die 이름을 가진 애니메이션 실행
+        OnDespawn();
         enabled = false;
+    }
+
+    public void Initialize(Action<GameObject> returnAction)
+    {
+        returnToPool = returnAction;
+    }
+
+    public void OnSpawn()
+    {
+        enabled = true;
+
+        health.InitialHealth();
+        stateMachine.ChangeState(stateMachine.IdleState);
+        
+    }
+
+    public void OnDespawn()
+    {
+        returnToPool?.Invoke(gameObject);
     }
 }

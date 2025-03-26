@@ -15,7 +15,8 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        health = maxHealth;
+        InitialHealth();
+
     }
 
     public void TakeDamage(int damage)
@@ -29,10 +30,15 @@ public class Health : MonoBehaviour
         {
             IsDie = true;
             
-            OnDie?.Invoke(); 
+            OnDie?.Invoke();
         }
         Debug.Log(health);
     }
 
-
+    // 체력, isDie 초기화 메서드
+    public void InitialHealth()
+    {
+        health = maxHealth;
+        IsDie = false;
+    }
 }

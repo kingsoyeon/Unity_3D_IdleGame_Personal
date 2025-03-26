@@ -31,6 +31,7 @@ public class ObjectPoolManager : MonoBehaviour
         else
         {
             go = Instantiate(prefabs[prefabIndex]);
+            
             go.GetComponent<IPoolable>()?.Initialize(go => ReturnObject(prefabIndex, go));
         }
         
