@@ -43,12 +43,8 @@ public class PlayerComboAttackState : PlayerAttackState
         float normalizedTime = GetNormalizedTime(stateMachine.Player.animator, "Attack");
         if (normalizedTime < 1f) // 애니메이션이 다 끝나면 1f, 즉 애니메이션이 끝나지 않았다면
         {
-            if (normalizedTime >= attackInfoData.ComboTransitionTime) // 콤보 가능시간이 끝났다면
-            {
                 // 콤보 시도한다
                 TryComboAttack();
-            }
-
         }
         else // 애니메이션이 끝났다면
         {
@@ -62,7 +58,7 @@ public class PlayerComboAttackState : PlayerAttackState
             else // 콤보가 진행 다 됐다면
             {
                 // 종료
-                stateMachine.ChangeState(stateMachine.IdleState);
+                stateMachine.ChangeState(stateMachine.RunState);
             }
         }
     }

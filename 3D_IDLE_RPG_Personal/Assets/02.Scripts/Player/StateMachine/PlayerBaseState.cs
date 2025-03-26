@@ -41,7 +41,6 @@ public class PlayerBaseState : IState
 
         if (isInAttackRange())
         {
-
             // attack state·Î º¯°æ
             stateMachine.ChangeState(stateMachine.ComboAttackState);
             return;
