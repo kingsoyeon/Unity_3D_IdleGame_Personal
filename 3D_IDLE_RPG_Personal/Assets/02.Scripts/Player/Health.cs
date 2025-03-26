@@ -25,9 +25,10 @@ public class Health : MonoBehaviour
         health = Mathf.Max(health-damage, 0);
 
         // 데미지를 입고 피가 0이 되면 액션 호출
-        if (health == 0)
+        if (health == 0) // 죽음
         {
             IsDie = true;
+            
             OnDie?.Invoke(); 
         }
         Debug.Log(health);

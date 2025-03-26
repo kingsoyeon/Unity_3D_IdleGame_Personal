@@ -27,20 +27,36 @@ public class PlayerStateMachine : StateMachine
     public PlayerRunState RunState { get; private set; }
 
     public PlayerComboAttackState ComboAttackState { get; private set; }
-   
+    
+    
     public PlayerStateMachine(Player player)
     {
         this.Player = player;
-        Target = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
+        
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;
-
+        // Target = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
+        //Target = 
+        EnemyRespawnManager.Instance.OnEnemySpawn += SetTarget;
         IdleState = new PlayerIdleState(this);
         WalkState = new PlayerWalkState(this);
         RunState = new PlayerRunState(this);
 
         ComboAttackState = new PlayerComboAttackState(this);
+    }
+
+    // 타겟 설정
+    public void SetTarget(Health enemy)
+    {
+        Target = enemy;
+    }
+
+
+    // 이벤트 구독 해제
+    public void OnDestroy()
+    {
+        EnemyRespawnManager.Instance.OnEnemySpawn -= SetTarget;
     }
 
     protected void StartAnimation(int animationHash)

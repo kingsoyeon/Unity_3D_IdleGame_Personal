@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         stateMachine.ChangeState(stateMachine.RunState);
 
         health.OnDie += OnDie; // health의 OnDie 액션에 메서드 추가
+        
     }
     ////public IEnumerator ChangeToWalk()
     //{
